@@ -1,0 +1,46 @@
+package array;
+
+/**
+ * 
+ * @author Sandeep Srivastava
+ * Title: Find Missing Number Using XOR
+ * Time Complexity: O(N) 
+ * Auxiliary Space: O(1) 
+ * 
+ */
+/* IMPORTANT NOTE*/
+/**
+ * 
+ * Both Previous and this method to solve the problem gives the same time complexity O(N)
+ * but this using XOR will work better than that and give right result. In the previous one sum 
+ * of numbers go beyond MAXIMUM ALLOWED INTEGER then there can be a integer overflow and We may not 
+ * get correct result. ANd There is no such problem using XOR 
+ */
+public class Ex3B {
+	
+	public static void main(String[] args) {
+		
+		int[] intArr = {4,1,5,6,2};
+		
+		int result = findMissingNumUsingXOR(intArr,intArr.length);
+		System.out.println("Missing Number: "+result);
+	}
+
+	//findMissingNumUsingXOR takes an integer array and its si
+	private static int findMissingNumUsingXOR(int[] intArr, int n) {
+		
+		int x1=0; //XOR of all elements of the array
+		int x2=0; //XOR of all elements of the actual range 1 to n+1;
+		
+		for(int num:intArr) {
+			x1 = x1^num;
+		}
+		
+		int num=1;
+		while(num<=n+1) {
+			x2=x2^num++;
+		}
+    
+		return x1^x2;
+	}
+}
