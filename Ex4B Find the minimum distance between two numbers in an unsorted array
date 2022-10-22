@@ -1,0 +1,69 @@
+package array;
+/**
+ * 
+ * @author Sandeep Srivastava
+ * Problem: Find the minimum distance between two numbers in an unsorted array
+ * 
+ * Time Complexity: O(n). 
+ * Only one traversal of the array is needed.
+ * Space Complexity: O(1). 
+ * As no extra space is required.
+ *
+ */
+/*
+ 
+ Algorithm:
+  (1) Traverse the array and find the index of either x and y, store that in prev variable break the loop.
+  (2) Traverse the array forword than prev variavble in other loop, as noon as find the y then calculate the 
+      difference between current index of y and prev.
+  (3) If the min_dist is greater than the calculated difference between y and prev, then update the min_dist.
+      And initilize the prev as current index of y. then continue the loop till the min_dist not found.
+  (4) And if Y not found the initialize the prev as index of y. 
+
+ */
+public class Ex4B {
+	
+	//Driver Function
+	public static void main(String[] args) {
+//		int intArr[] = { 3, 5, 4, 2, 6, 5, 6, 6, 5, 4, 8, 3 };
+		int intArr[] = { 3, 5, 4, 2, 6, 3, 0, 0, 5, 4, 8, 3 };
+		int x = 3;
+		int y = 6;
+		
+		int min_dist = findMinDistBewXAndY(intArr, x, y);
+		System.out.println("Minimum Distance: "+min_dist);
+	}
+
+	private static int findMinDistBewXAndY(int[] a, int x, int y) {
+	    
+		int min_dist = Integer.MAX_VALUE;
+		int i;
+		int prev=-1;
+		
+		//Travervce fot the first occurance either of x or y
+		for(i=0;i<a.length;i++) {
+			if(x == a[i] || y == a[i]) {
+				prev = i;
+				break;
+			}
+		}
+		
+		//Traverve after first occurance
+		for(;i<a.length;i++) {
+			if(x==a[i] || y == a[i]) {
+				//check that current element is not the element at prev index and current calculated index difference 
+				// is less tha previous stored min_dist, If it happens then update the min_dist
+				if(a[i] != a[prev] && min_dist>(i-prev)) {
+					min_dist = i-prev;
+					prev = i;
+				}else {
+					prev = i;
+				}
+			}
+		}	
+		
+		if(min_dist == Integer.MAX_VALUE)
+			return -1;
+		return min_dist;
+	}
+}
