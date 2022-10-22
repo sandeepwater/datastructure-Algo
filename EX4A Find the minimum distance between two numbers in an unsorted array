@@ -1,0 +1,48 @@
+package array;
+
+/**
+ * 
+ * @author Sandeep Srivastava
+ * Problem: Find the minimum distance between two numbers in an unsorted array
+ * 
+ * Assumptions: 
+ * 
+ * (1) Given an unsorted array and two numbers x and y, find the 
+ *     minimum distance between x and y in arr[].
+ *     
+ * (2) The array might also contain duplicates.
+ * 
+ * (3) We may assume that x and y are different and present in the array.
+ * 
+ * Time Complexity = O(n^2) Nested loop is used to traverse the array
+ * Space Complexity = O(1), No extra space is required
+ * 
+ * 
+ */
+public class Ex4A {
+	/**
+	 * Using Simple Method
+	 */
+
+	public static void main(String[] args) {
+
+		int intArr[] = { 3, 5, 4, 2, 6, 5, 6, 6, 5, 4, 8, 3 };
+		int x = 3;
+		int y = 6;
+
+		int minDist = findMinDistanceBetweenXandY(intArr, intArr.length, x, y);
+		System.out.println("Minimum Distance: " + minDist);
+	}
+
+	private static int findMinDistanceBetweenXandY(int[] a, int length, int x, int y) {
+
+		int min_dist = Integer.MAX_VALUE;
+
+		for (int i = 0; i < a.length; i++)
+			for (int j = i + 1; j < a.length; j++) {
+				if (x == a[i] && y == a[j] || x == a[j] && y == a[i] && min_dist > Math.abs(i - j))
+					min_dist = Math.abs(i - j);
+			}
+		return min_dist;
+	}
+}
