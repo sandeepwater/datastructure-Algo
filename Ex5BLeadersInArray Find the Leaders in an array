@@ -3,9 +3,7 @@ package array;
 /**
  * 
  * @author Sandeep Srivastava
- * Program: Find the Leaders in an array
- * 
- *  Simple Methosd:Better Solution
+ * Program: Find the Leaders in an array (Scan From the Right)
  *  
  *  Time Complexity: O(N)
  *  Auxiliary Space: O(1)
