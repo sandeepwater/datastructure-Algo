@@ -6,9 +6,9 @@ package array;
  * Problem: Find the Mejority Element.
  *    Mejority Element: Mejority Element in an array arr[] of size n is the element, which appears more 
  *    the n/2 times in an array.(And hence there is atmost one such elements)
- *        
- *   
  *
+ *Time Complexity: O(n*n), A nested loop is needed where both the loops traverse the array from start to end.
+ *Auxiliary Space: O(1), No extra space is required.
  */
 public class Ex6AMejorityElements {
 	
