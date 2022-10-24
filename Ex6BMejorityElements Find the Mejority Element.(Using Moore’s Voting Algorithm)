@@ -1,0 +1,69 @@
+package array;
+
+/**
+ * 
+ * @author Sandeep Srivastava
+ * Problem: Find the Mejority Element.(Using Moore’s Voting Algorithm)
+ *    Mejority Element: Mejority Element in an array arr[] of size n is the element, which appears more 
+ *    the n/2 times in an array.(And hence there is atmost one such elements)
+ *
+ *Time Complexity: O(n), As two traversal of the array, is needed, so the time complexity is linear.
+ *Auxiliary Space: O(1), As no extra space is required.
+ *
+ */
+public class Ex6BMejorityElements {
+
+	public static void main(String[] args) {
+		
+//		int intArr[] = { 1, 3, 3, 1, 2 };
+//		int intArr[] = { 1, 1, 2, 1, 3, 5, 1 };
+		int intArr[] = { 2, 2, 3, 3, 3, 3 ,5 , 1 };
+		
+	   Ex6BMejorityElements mejorityElements = new Ex6BMejorityElements(); 
+	   mejorityElements.printMejority(intArr, intArr.length);
+	}
+
+	private void printMejority(int[] a, int n) {
+		
+		int cand = findCandidate(a, n);
+		
+		if(isMejorityElement(a,n,cand)) {
+			System.out.println("Mejority Element: "+cand);
+		}else {
+			System.out.println("None Mejority Element.");
+		}
+	}
+	
+	private int findCandidate(int[] a, int n) {
+		int count=1;
+		int maj_index = 0;
+		
+		for(int i=1;i<a.length;i++) {
+			if(a[maj_index] == a[i])
+				count++;
+			else {
+				count--;
+			}
+			if(count==0) {
+				count=1;
+				maj_index=1;
+			}
+		}
+		return a[maj_index];
+	}
+
+	private boolean isMejorityElement(int[] a, int n, int cand) {
+
+		int count = 0;
+
+		for (int i = 0; i < n; i++) {
+			if (cand == a[i]) {
+				count++;
+			}
+		}
+
+		if (count > n / 2)
+			return true;
+		else return false;
+	}
+}
