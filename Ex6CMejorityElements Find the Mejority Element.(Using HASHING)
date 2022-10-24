@@ -1,0 +1,38 @@
+package array;
+
+import java.util.HashMap;
+
+/**
+ * 
+ * @author Sandeep Srivastava
+ * Problem: Find the Mejority Element.(Using HASHING)
+ *    Mejority Element: Mejority Element in an array arr[] of size n is the element, which appears more 
+ *    the n/2 times in an array.(And hence there is atmost one such elements)
+ *    
+ *    Time Complexity: O(n) One traversal of the array is needed, so the time complexity will be linear O(n).
+ *    Auxiliarry space: O(n) Hence haspmap requires linear space.
+ */
+public class Ex6CMejorityElements {
+	
+	public static void main(String[] args) {
+		int arr[] =new int[]{2,2,2,2,5,5,2,3,3};
+		findMejorityUsingHashing(arr,arr.length);
+	}
+
+	private static void findMejorityUsingHashing(int[] a, int length) {
+
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+
+		for (int i = 0; i < length; i++) {
+			if (map.containsKey(a[i])) {
+				int count = map.get(a[i]) + 1;
+				if (count > length / 2) {
+					System.out.println("mejority Elements: " + a[i]);
+				} else {
+					map.put(a[i], count);
+				}
+			} else
+				map.put(a[i], 1);
+		}
+	}
+}
