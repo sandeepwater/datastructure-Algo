@@ -1,0 +1,37 @@
+package array;
+/**
+ * 
+ * @author Sandeep Srivastava
+ * Title: Find the Number Occurring Odd Number of Times(Simple Method)
+ *  Array: will be of all positive numbers.
+ *  
+ *  Time Complexity: O(N*N) Just to travel the loop in nested way.
+ *  Auxiliary Space: O(1)
+ *
+ */
+public class Ex7A {
+	// driver code
+	public static void main(String[] args) {
+//		int intArr[]  = {1 ,2, 3, 2, 3, 1, 3};	
+		int intArr[] = { 1, 2, 3, 2, 3, 1, 3, 3 };
+		findNumberOddOccuringTimes(intArr, intArr.length);
+	}
+
+	//Function to find element occurring odd number of times
+	private static void findNumberOddOccuringTimes(int[] a, int n) {
+		int numOccuredOddTimes = -1;
+
+		for (int i = 0; i < n; i++) {
+			int count = 0;
+			for (int j = 0; j < n; j++) {
+				if (a[i] == a[j])
+					count++;
+			}
+			if (count % 2 == 1) {
+				numOccuredOddTimes = a[i];
+				break;
+			}
+		}
+		System.out.println("Number occured odd Number of Times: " + numOccuredOddTimes);
+	}
+}
