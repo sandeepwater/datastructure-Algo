@@ -1,0 +1,44 @@
+package array;
+
+/**
+ * 
+ * @author Sandeep Srivastava
+ * Title: Find the Number Occurring Odd Number of Times(Using Bitwise XOR)
+ *  Array: will be of all positive numbers.
+ *  
+ *  Here ^ is the XOR operators;
+ * Note :
+ * x^0 = x
+ * x^y=y^x (Commutative property holds)
+ * (x^y)^z = x^(y^z) (Distributive property holds)
+ * x^x=0
+ * 
+ * Time Complexity: O(n)
+ * Auxiliary Space: O(1)
+ * 
+ */
+public class Ex7C {
+	
+	public static void main(String[] args) {
+		int intPostArr[] = { 1, 2, 3, 2, 3, 1, 3 };
+		//int intPostArr[] = { 1, 2, 3, 2, 3, 1, 3, 3 };
+		int oddOccNum = 0;
+		oddOccNum= findOddOccuNum(intPostArr, intPostArr.length);
+		
+		if(oddOccNum!=0)
+			System.out.println("Odd Occurred Num: "+oddOccNum);
+		else System.out.println("No such Num.");
+		
+	}
+
+	private static int findOddOccuNum(int[] a, int n) {
+		
+		int result = 0; 
+		
+		for(int i=0;i<n;i++) {
+			result = result^a[i];  // A^A=0, A^0=A
+		}
+		
+		return result;
+	}
+}
