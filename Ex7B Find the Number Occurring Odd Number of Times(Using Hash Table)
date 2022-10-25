@@ -1,0 +1,77 @@
+package array;
+
+import java.util.HashMap;
+
+/**
+ * 
+ * @author Sandeep Srivastava
+ * Title: Find the Number Occurring Odd Number of Times(Using Hash Table)
+ *  Array: will be of all positive numbers.
+ *  
+ *  Time Complexity: O(n)
+ *  Auxiliary Space: O(n) Actually it requires extra space for hashing.
+ *  
+ */
+public class Ex7B {
+
+	public static void main(String[] args) {
+//		int intPostArr[] = { 1, 2, 3, 2, 3, 1, 3 };
+		int intPostArr[] = { 1, 2, 3, 2, 3, 1, 3, 3 };
+		int numOccuOddTimes = -1;
+		numOccuOddTimes=findOddOccEleUsingTable(intPostArr, intPostArr.length);
+		if(numOccuOddTimes!=-1)
+			System.out.println("Number Occurred Odd number of times: " + numOccuOddTimes);
+		else {
+			System.out.println("No such Number Occurred Odd number of times.");
+		}
+	}
+
+	private static int findOddOccEleUsingTable(int[] a, int n) {
+//        [[[[1]]]]
+//		Hashtable<Integer, Integer> hashtable = new Hashtable<Integer, Integer>();
+//		int numOccuOddTimes = -1;
+//
+//		int updatedCount = 0;
+//
+//		for (int i = 0; i < n; i++) {
+//			if (hashtable.containsKey(a[i])) {
+//				updatedCount = hashtable.get(a[i]) + 1;
+//				hashtable.put(a[i], updatedCount);
+//			} else {
+//				hashtable.put(a[i], 1);
+//			}
+//		}
+//		
+//		for (Integer num :hashtable.keySet()) {
+//			if (hashtable.get(num) % 2 == 1) {
+//				numOccuOddTimes = num;
+//				break;
+//			}
+//		}		
+		
+		
+//      [[[[2]]]]
+		HashMap<Integer, Integer> hashMap = new HashMap<>();
+		int numOccuOddTimes = -1;
+
+		int updatedCount = 0;
+
+		for (int i = 0; i < n; i++) {
+			if (hashMap.containsKey(a[i])) {
+				updatedCount = hashMap.get(a[i]) + 1;
+				hashMap.put(a[i], updatedCount);
+			} else {
+				hashMap.put(a[i], 1);
+			}
+		}
+
+		for (Integer num :hashMap.keySet()) {
+			if (hashMap.get(num) % 2 == 1) {
+				numOccuOddTimes = num;
+				break;
+			}
+		}
+
+		return numOccuOddTimes;
+	}
+}
