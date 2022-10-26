@@ -1,0 +1,49 @@
+package array;
+
+/**
+ * 
+ * @author Sandeep Srivatava
+ * Titile: Find a fixed point in a given array(Binary Search)
+ * Fixed Point a[i] = i
+ * 
+ * Time Complexity: O(log n)
+ * Auxiliary Space: O(log n) (As implicit stack is used for recursive calls)
+ * 
+ */
+public class Ex9B {
+	public static void main(String[] args) {
+		// array will be in Ascending order, can have negative element, no duplicate.
+//		int[] intArr = new int[] { -10, -1, 0, 3, 10, 11, 30, 50, 100}; 
+		int[] intArr = new int[] { -10, -1, 0, 8, 10, 5, 30, 50, 100 };
+
+		int fixedPoint = -1;
+		fixedPoint = findAFixedPointInArray(intArr, 0, intArr.length - 1);
+		if (fixedPoint != -1)
+			System.out.println("Fixed Point: " + fixedPoint);
+		else
+			System.out.println("No Fixed Point: " + fixedPoint);
+	}
+
+	private static int findAFixedPointInArray(int[] a, int low, int high) {
+
+		if (low <= high) {
+			int mid = (low + high) / 2;
+
+			if (a[mid] == mid)
+				return mid;
+
+			int res = -1;
+
+			if (mid + 1 <= a[high])
+				res = findAFixedPointInArray(a, mid + 1, high);
+
+			if (res != -1)
+				return res;
+
+			if (a[low] <= mid - 1)
+				return findAFixedPointInArray(a, low, mid - 1);
+		}
+
+		return -1;
+	}
+}
