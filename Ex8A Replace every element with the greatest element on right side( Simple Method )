@@ -1,0 +1,52 @@
+package array;
+
+import java.util.Arrays;
+
+/**
+ * 
+ * @author Sandeep Srivastava
+ *  Title: Replace every element with the greatest element on right side( Simple Method )
+ *  
+ *  Time Complexity: O(n)
+ *  Auxiliary space: O(1)
+ *
+ */
+public class Ex8A {
+	
+	public static void main(String[] args) {
+//		int[] intArr = new int[]{16, 17, 4, 3, 5, 2};
+		int[] intArr = new int[]{16, 3, 5, 2, 1, 6};
+		System.out.println(Arrays.toString(intArr));
+		
+		int[] modifiedArr = functionToPerformRequiredWork(intArr, intArr.length);
+		System.out.println(Arrays.toString(modifiedArr));
+	}
+
+	//function to replace element by greatest element on right side
+	private static int[] functionToPerformRequiredWork(int[] a, int n) {
+
+		for (int i = 0; i < n; i++) {
+			int temp = Integer.MIN_VALUE;
+			int correspondingIndex=-1;
+			int index =0;
+			for (int j = i+1 ; j < n-1; j++) {
+                 if(a[j]>a[j+1] && a[j]>temp) {
+                	 temp = a[j];
+                	 correspondingIndex = j;
+                 } else if(a[j+1]>temp) {
+                	 temp = a[j+1];
+                	 correspondingIndex = j+1;
+				}
+                 index = j+2;
+			}
+			if(index == n)
+				a[i] = a[correspondingIndex];
+		}
+		
+		a[n-2]=a[n-1];
+		a[n-1]=-1;
+		
+		return a;
+	}
+
+}
