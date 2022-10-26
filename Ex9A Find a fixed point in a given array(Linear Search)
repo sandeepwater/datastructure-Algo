@@ -17,13 +17,13 @@ public class Ex9A {
 		int[] intArr = new int[] { -10, -1, 0, 3, 10, 11, 30, 50, 100}; 
 		
 		int fixedPoint = -1;
-		fixedPoint =  fifindAFixedPointInArray(intArr,intArr.length);
+		fixedPoint =  findAFixedPointInArray(intArr,intArr.length);
 		if(fixedPoint!=-1)
 			System.out.println("Fixed Point: "+fixedPoint );
 		else System.out.println("No Fixed Point: "+fixedPoint);
 	}
 
-	private static int fifindAFixedPointInArray(int[] a, int n) {
+	private static int findAFixedPointInArray(int[] a, int n) {
 		
 		for(int i=0; i<n ; i++) {
 			if(a[i] == i)
