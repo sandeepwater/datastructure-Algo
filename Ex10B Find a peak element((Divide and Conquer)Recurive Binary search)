@@ -1,0 +1,58 @@
+package array;
+
+/**
+ * 
+ * @author Sandeep Srivastava
+ * Problem: Find a peak element((Divide and Conquer)Recurive Binary search)
+ * Definition: Peak element is an element which is not smaller than its neighbouring element.
+ * Ex:(1) 3, 3, 3 Middle 3 element is Not smallar than its neighbour element. so it's a peak element.
+ *    (2) {10, 20, 15, 2, 23, 90, 67} then 20 Or 90 is peak element.
+ * Corner cases:---> {5, 10, 15, 20} for element 5 only one right element will be to compare i.e. right element,
+ *                               for element 20 only one right element will be to compare i.e. left element
+ *                               
+ *              ---> If array is in ascending order then last element will be the Peak element, remaining will not be the peak element
+ *              ---> If array is in decending order then first element will be the Peak element, remaining will not be the peak element
+ *              ---> If all element of an array is same the all element is the peak element.
+ *              
+ * Time Complexity: O(log N), Where N is the number of elements in the input array. 
+ * Auxiliary Space: O(log N), As recursive call is there, hence implicit stack is used.
+ */
+public class Ex10B {
+	
+	public static void main(String[] args) {
+		int[] intArr = new int[]{ 1, 3, 20, 4, 1, 0 };
+		int peakEleIndex =-1;
+		peakEleIndex = findPeak(intArr, intArr.length);
+		if(peakEleIndex != -1)
+			System.out.println("Peak Element's Index is: "+peakEleIndex);
+		else System.out.println("No Peak Element's Index.");
+	}
+
+	// A wrapper over recursive function
+    // findPeakUtil()
+	private static int findPeak(int[] a, int n) {
+		return findPeakUtil(a, 0, n-1, n);
+	}
+
+	// A binary search based function
+    // that returns index of a peak element
+	private static int findPeakUtil(int[] a, int low, int high, int n) {
+		int mid = (low+high)/2;
+		
+		/**
+		 * low = 0, high = 1, then low+high = 1 then 1%2 = 1(mid)
+		 * then mid=n-1=2-1=1(mid)
+		 */
+		if((mid == 0 || a[mid-1]<=a[mid]) && (mid == n-1 || a[mid+1]<=a[mid]))
+			return mid;
+		
+		// If middle element is not peak and its left neighbor is greater than it,
+		// then left half must have a peak element
+		else if(mid>0 && a[mid-1]>a[mid])
+			return findPeakUtil(a, low, mid-1, n);
+		
+		// If middle element is not peak and its right neighbor is greater than it, then right
+        // half must have a peak element
+		else return findPeakUtil(a, mid+1, high, n);
+	}
+}
