@@ -1,0 +1,47 @@
+package array;
+
+/**
+ * 
+ * @author Sandeep Srivastava
+ * Problem: Count Strictly Incresing sub-arrays.
+ * Expected Time Complexity is O(n) and Auxiliarry Space is O(1)
+ * but what will happen in this let's see
+ * 
+ * Time Complexity: O(n^2)
+ * Auxiliary Space: O(1)
+ *
+ */
+public class Ex11A {
+	
+	public static void main(String[] args) {
+//		int[] intArr = new int[]{9, 1, 2, 3, 4, -1, 7, 8};
+//		int[] intArr = new int[]{9, 1, 11, 3, 4, -1, 7, 8};
+		int[] intArr = new int[]{45,56,23,21,22,67,34,24,57,90};
+		int totalCountedNum = 0;
+		totalCountedNum=countStrictlyIncresingSubArrays(intArr, intArr.length);
+		if(totalCountedNum!=0)
+			System.out.println("Total Counted Number: "+totalCountedNum);
+		else {
+			System.out.println("No any Strictly sub array.");
+		}	
+	}
+
+	private static int countStrictlyIncresingSubArrays(int[] a, int n) {
+		
+		//Initialize count of sub-arrays is 0
+		int count =0 ;		
+		for(int i=0; i<a.length ;i++) {
+			for(int j=i+1;j<a.length;j++) {
+				
+				//check till which j, i------>j will be in increasing order,at every next a[j] which 
+				//will be greater than a[i] along with a[j]>a[j-1] then increse count else break the loop
+				//and increse the outer loop pointer one step founder.
+				if(a[j]>a[i] && a[j]>a[j-1])
+					count++;
+				else
+					break;
+			}
+		}	
+		return count;
+	}
+}
