@@ -1,0 +1,42 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Count Strictly Incresing sub-arrays.(O(n), O(1))
+ * Expected Time Complexity is O(n) and Auxiliarry Space is O(1)
+ * but what will happen in this let's see
+ * 
+ * Time Complexity: O(n), because onle single traversal
+ * Auxiliary Space: O(1), No extra space is required.
+ */
+public class Ex11B {
+	
+	public static void main(String[] args) {
+    int[] intArr = new int[]{9, 1, 2, 3, 4, -1, 7, 8};
+		int totalCountedNum = 0;
+		totalCountedNum=countStrictlyIncresingSubArrays(intArr, intArr.length);
+		if(totalCountedNum!=0)
+			System.out.println("Total Counted Number: "+totalCountedNum);
+		else {
+			System.out.println("No any Strictly sub array.");
+		}	
+	}
+
+	private static int countStrictlyIncresingSubArrays(int[] a, int n) {
+		int len = 1;
+		int count = 0;
+		for(int i=0; i<n-1; i++) {
+				if(a[i+1]>a[i])
+					len++;
+				else {
+				    count += ((len*(len-1))/2);
+				    len = 1;
+				}
+		}
+		
+		if(len>1)
+			count += ((len*(len-1))/2);
+		return count;
+	}
+
+}
