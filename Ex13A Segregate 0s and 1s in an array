@@ -1,0 +1,43 @@
+package array;
+
+import java.util.Arrays;
+
+/**
+ * @author Sandeep Srivastava 
+ * Problem: Segregate 0s and 1s in an array
+ * 
+ *         Time Complexity: O(n) , actually 2*O(n), means two traversal of array
+ *         Auxiliary Space: O(1)
+ */
+public class Ex13A {
+
+	public static void main(String[] args) {
+//		int arr[]= {0 , 1, 1, 0, 1, 1, 0, 1, 0, 1};
+		int arr[] = { 0, 1, 1, 0, 0, 0, 0, 1, 0, 1 };
+		int modifiedArr[] = segregate0sAnd1s(arr, arr.length);
+		System.out.println("Segregated Arrray: " + Arrays.toString(modifiedArr));
+	}
+
+	// function to segregate all 0's and 1's
+	private static int[] segregate0sAnd1s(int[] a, int n) {
+		// variavle to count all zero's
+		int c = 0;
+
+		// loop to count all 0's
+		for (int i = 0; i < n; i++) {
+			if (a[i] == 0)
+				c++;
+		}
+
+		// set 0's till before c and put 1 after words
+		for (int i = 0; i < n; i++) {
+			if (0 <= i && i < c)
+				a[i] = 0;
+			else
+				a[i] = 1;
+		}
+
+		// return the modified array
+		return a;
+	}
+}
