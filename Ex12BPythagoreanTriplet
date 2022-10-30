@@ -1,0 +1,76 @@
+package array;
+
+import java.util.Arrays;
+
+/**
+ * @author Sandeep Srivastava Problem: Pythagorean Triplet in an array
+ *         Description: (a, b, c) such that (a^2+b^2 = c^2)
+ * 
+ *         Time Complexity = O(n^2) Auxiliary Space = O(1)
+ * 
+ */
+public class Ex12BPythagoreanTriplet {
+
+	public static void main(String[] args) {
+//		int[] intArr = { 3, 1, 4, 6, 5 };
+//	    int[] intArr = { 3, 1, 4, 8, 15, 17 };
+//	    int[] intArr = { 3, 1, 4, 48, 55, 73 };
+		int[] intArr = { 3, 1, 4, 39, 80, 89 };
+		boolean result = isTriplet(intArr, intArr.length);
+
+		if (result == true)
+			System.out.println("Array is having Triplet: " + result);
+		else
+			System.out.println("There is no triplet.");
+	}
+
+	private static boolean isTriplet(int[] a, int n) {
+		// Square every element of the array
+		// O(n) time
+		for (int i = 0; i < n; i++) {
+			int temp = a[i] * a[i];
+			a[i] = temp;
+		}
+
+		/**
+		 * Sorts the specified array into ascending numerical order.
+		 *
+		 * @implNote The sorting algorithm is a Dual-Pivot Quicksort by Vladimir
+		 *           Yaroslavskiy, Jon Bentley, and Joshua Bloch. This algorithm offers
+		 *           O(n log(n)) performance on all data sets, and is typically faster
+		 *           than traditional (one-pivot) Quicksort implementations.
+		 *
+		 * @param a the array to be sorted
+		 */
+		Arrays.sort(a);
+
+		// To find the other two elements, start two index
+		// variables from two corners of the array and move
+		// them toward each other
+		int l = 0;
+		int r = n - 2;
+
+		// total O(n^2)
+		for (int i = n - 1; i > 0; i--) {
+			// To find the other two elements, start two index
+			// variables from two corners of the array and move
+			// them toward each other
+			l = 0;
+			r = i - 1;
+
+			while (l < r) {
+				if (a[l] + a[r] < a[i] && l != r)
+					l++;
+				else
+					r--;
+
+				// After increment l and decrement r fisrt check, is our requirement completeing
+				// or not
+				// if completing return true otherwise go ahead
+				if (a[l] + a[r] == a[i])
+					return true;
+			}
+		}
+		return false;
+	}
+}
