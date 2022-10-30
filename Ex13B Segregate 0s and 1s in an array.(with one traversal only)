@@ -1,0 +1,47 @@
+package array;
+
+import java.util.Arrays;
+
+/**
+ * @author Sandeep Srivastava 
+ * Problem: Segregate 0s and 1s in an array.(with one traversal only)
+ * Time Complexity: O(n), but only one traversal
+ * Auxiliary sapce = O(1)
+ * 
+ * Summary:
+ * It is better than previous.
+ */
+public class Ex13B {
+
+	public static void main(String[] args) {
+		int arr[] = { 0, 1, 1, 0, 1, 1, 0, 1, 0, 1 };
+//		int arr[] = { 0, 1, 1, 0, 0, 0, 0, 1, 0, 1 };
+		int modifiedArr[] = segregate0sAnd1s(arr, arr.length);
+		System.out.println("Segregated Arrray: " + Arrays.toString(modifiedArr));
+	}
+
+	private static int[] segregate0sAnd1s(int[] a, int n) {
+
+		// Two index variables from two conrners of the aray and move them towards each
+		// other
+		int l = 0;
+		int r = n - 1;
+
+		while (l < r) {// if l<=r then last traversal will enter in the if statement, responsible for
+						// swapping
+
+			if (a[l] == 0)
+				l++;
+			if (a[r] == 1)
+				r--;
+
+			// swap when a[l] get 1 and a[r] get 0
+			if (a[l] == 1 && a[r] == 0) {
+				a[l] = a[l] + a[r];
+				a[r] = a[l] - a[r];
+				a[l] = a[l] - a[r];
+			}
+		}
+		return a;
+	}
+}
