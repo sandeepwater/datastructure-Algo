@@ -6,12 +6,13 @@ import java.util.Arrays;
  * @author Sandeep Srivastava Problem: Pythagorean Triplet in an array
  *         Description: (a, b, c) such that (a^2+b^2 = c^2)
  * 
- *         Time Complexity = O(n^2) Auxiliary Space = O(1)
- * 
+ *         Time Complexity = O(n^2)
+ *         Auxiliary Space = O(1)
  */
 public class Ex12BPythagoreanTriplet {
 
 	public static void main(String[] args) {
+
 //		int[] intArr = { 3, 1, 4, 6, 5 };
 //	    int[] intArr = { 3, 1, 4, 8, 15, 17 };
 //	    int[] intArr = { 3, 1, 4, 48, 55, 73 };
@@ -25,6 +26,7 @@ public class Ex12BPythagoreanTriplet {
 	}
 
 	private static boolean isTriplet(int[] a, int n) {
+
 		// Square every element of the array
 		// O(n) time
 		for (int i = 0; i < n; i++) {
@@ -59,16 +61,13 @@ public class Ex12BPythagoreanTriplet {
 			r = i - 1;
 
 			while (l < r) {
-				if (a[l] + a[r] < a[i])
+				if (a[l] + a[r] == a[i])
+					return true;
+				
+				if (a[l] + a[r] < a[i] )
 					l++;
 				else
 					r--;
-
-				// After increment l and decrement r fisrt check, is our requirement completeing
-				// or not
-				// if completing return true otherwise go ahead
-				if (a[l] + a[r] == a[i])
-					return true;
 			}
 		}
 		return false;
