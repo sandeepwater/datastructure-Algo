@@ -59,7 +59,7 @@ public class Ex12BPythagoreanTriplet {
 			r = i - 1;
 
 			while (l < r) {
-				if (a[l] + a[r] < a[i] && l != r)
+				if (a[l] + a[r] < a[i])
 					l++;
 				else
 					r--;
