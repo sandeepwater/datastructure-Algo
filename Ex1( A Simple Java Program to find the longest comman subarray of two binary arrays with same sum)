@@ -1,7 +1,6 @@
 package array;
 
 /**
- * 
  * @author Sandeep Srivastava
  * 
  * A Simple Java Program to find the longest comman subarray of two binary arrays with same sum
