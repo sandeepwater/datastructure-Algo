@@ -1,0 +1,54 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Given an array A[] and a number x, check for pair in A[] with sum as x(Using Binary Search)
+ *
+ *Time Complexity: O(N*logN), logN is the time to serach, but this will happen for n times. so N*LogN
+ *Auxiliary space: O(1)
+ */
+public class Ex14B {
+
+	public static void main(String[] args) {
+		int[] intArr = { 1, 4, 45, 6, 10, -8 };
+		int sum = 16;
+
+		boolean result = false;
+
+		result = checkForPair(intArr, intArr.length, sum);
+
+		if (result == true)
+			System.out.println("Pair Found.");
+		else
+			System.out.println("No Such Pair.");
+
+	}
+
+	private static boolean checkForPair(int[] a, int n, int sum) {
+
+		for (int i = 0; i < n; i++) {
+			int searchKey = sum - a[i];
+			if (binarySearch(a, i+1, n-1, searchKey) == true)
+				return true;
+		}
+		return false;
+	}
+
+	private static boolean binarySearch(int[] a, int l,int r, int searchKey) {
+		int mid = 0;
+
+		while (l < r) {
+			mid = (l + r) >> 1; // 10>>3 = 10/2^3
+
+		 // Check if searchKey is present at mid
+			if (a[mid] == searchKey)
+				return true;
+		// if searchKey is less than  a[mid] update r otherwise l;
+			if (searchKey < a[mid])
+				r = mid - 1;
+			else
+				l = mid + 1;
+		}
+		return false;
+	}
+}
