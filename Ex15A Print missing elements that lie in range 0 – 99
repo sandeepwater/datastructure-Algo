@@ -1,0 +1,56 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Print missing elements that lie in range 0 – 99
+ * Note: (1)Input array may not be in sorted order.
+ *       (2)may conatcin the number outside the range of [0--90],
+ *       (3)But only this range is to be considered to print the missing numbers.
+ *       
+ * Expected Time Complexity = O(n)
+ */
+public class Ex15A {
+
+	public static void main(String[] args) {
+	  int[] intArr = new int[] {88, 105, 3, 2, 200, 0, 10};
+	  printMissingRange(intArr, intArr.length);
+	}
+
+	private static void printMissingRange(int[] a, int n) {
+		int LIMIT = 100;
+		
+		boolean[] seen=new boolean[LIMIT];
+		
+		 // Initialize all number from 0 to 99 as NOT seen
+		for(int i=0;i<LIMIT;i++)
+			seen[i] = false;
+		
+		// Mark present elements in range [0-99] as seen
+        for (int i = 0; i < n; i++)
+        {
+            if (a[i] < LIMIT)
+                seen[a[i]] = true;
+        }
+		
+		int i = 0;
+		
+		while(i<LIMIT) {
+			//find Missing Range
+			if(seen[i]==false) {
+				
+				int j= i+1;
+				
+				while(j<LIMIT && seen[j]==false) {
+					j++;
+				}
+				
+				//Printing single or range
+				System.out.println(i+1 == j ? i: i+ "-" +(j-1));
+				
+				//update i
+				i=j;
+			}
+			i++;
+		}
+	}
+}
