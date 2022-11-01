@@ -1,0 +1,54 @@
+package array;
+
+import java.util.Arrays;
+
+/**
+ * 
+ * @author Sandeep Srivastava
+ * Problem: Given an array A[] and a number x, check for pair in A[] with sum as x(Using Sorting)
+ *
+ *Time Complexity: O(NlogN), Time complexity for sorting the array
+ *Auxiliary space: O(1), It depeneds on thesorting algorithm. For example auxiliary space is O(1) for Merge Sort 
+ *                       and for Heap Sort O(1)
+ */
+public class Ex14A {
+
+	public static void main(String[] args) {
+		int[] intArr = { 1, 4, 45, 6, 10, -8 };
+		int sum = 16;
+		
+		boolean result=false;
+		
+		result = checkForPair(intArr, intArr.length, sum);
+		
+		if(result==true)
+			System.out.println("Pair Found.");
+		else System.out.println("No Such Pair.");
+	}
+
+	private static boolean checkForPair(int[] a, int n, int sum) {
+
+		/**
+	     * Sorts the specified array into ascending numerical order.
+	     *
+	     * @implNote The sorting algorithm is a Dual-Pivot Quicksort
+	     * by Vladimir Yaroslavskiy, Jon Bentley, and Joshua Bloch. This algorithm
+	     * offers O(n log(n)) performance on all data sets, and is typically
+	     * faster than traditional (one-pivot) Quicksort implementations.
+	     *
+	     * @param a the array to be sorted
+	     */
+		Arrays.sort(a);
+		
+		int l = 0;
+		int r = n-1;
+		
+		while(l<r) {
+			if(a[l]+a[r]==sum)
+				return true;
+			if(a[l]+a[r]<sum) l++;
+			else r--;		
+		}
+		return false;
+	}
+}
