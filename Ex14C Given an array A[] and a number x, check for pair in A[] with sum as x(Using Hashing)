@@ -1,0 +1,47 @@
+package array;
+
+import java.util.HashSet;
+
+/**
+ * @author Sandeep Srivastava 
+ * Problem: Given an array A[] and a number x, check for pair in A[] with sum as x(Using Hashing)
+ * 
+ * Time Complexity: O(N), As the whole array is needed to be traversed only once.
+ * Auxiliary Space: O(N), A hash map has been used to store array elements.
+ * 
+ *         Note: The solution will work even if the range of numbers includes
+ *         negative numbers + if the pair is formed by numbers recurring twice
+ *         in array eg: array = [3,4,3]; pair = (3,3); target sum = 6.
+ */
+public class Ex14C {
+
+	public static void main(String[] args) {
+		int[] intArr = { 1, 4, 45, 6, 10, -8 };
+		int sum = 16;
+
+		boolean result = false;
+
+		result = checkForPair(intArr, intArr.length, sum);
+
+		if (result == true)
+			System.out.println("Pair Found.");
+		else
+			System.out.println("No Such Pair.");
+	}
+
+	private static boolean checkForPair(int[] a, int n, int sum) {
+		
+		HashSet<Integer> set = new HashSet<Integer>();
+		
+		for(int i=0;i<n;i++) {
+			
+			 // checking for condition
+			int nextOfPair=sum-a[i];
+			if(set.contains(nextOfPair))
+				return true;
+			set.add(a[i]);
+		}
+		
+		return false;
+	}
+}
