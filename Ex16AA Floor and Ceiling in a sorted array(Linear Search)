@@ -19,7 +19,7 @@ public class Ex16AA {
 		int num = 1;
 		index = findFloorOfANum(arr, arr.length, num);
 		if (index != -1)
-			System.out.println("Index of Ceil " + num + " is " + index);
+			System.out.println("Index of Floor " + num + " is " + index);
 		else {
 			System.out.println("No any Floor of this element.");
 		}
