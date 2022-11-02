@@ -1,0 +1,46 @@
+package array;
+
+/** 
+ * @author Sandeep Srivastava
+ * Problem: Floor and Ceiling in a sorted array(Linear Search)
+ * 
+ * CEIL: is the smallest number, which is greater or equal to x(given element)
+ * FLOOR: is the greatest number, which is smaller or equal to x(given number)
+ * 
+ * Assumption: Assume that the array is sorted in non-drecreasing order.
+ * Time Complexity: O(N)
+ */
+public class Ex16AA {
+	
+	public static void main(String[] args) {
+
+		int arr[] = { 1, 2, 8, 10, 10, 12, 19 };
+		int index = -1;
+		int num = 1;
+		index = findFloorOfANum(arr, arr.length, num);
+		if (index != -1)
+			System.out.println("Index of Ceil " + num + " is " + index);
+		else {
+			System.out.println("No any Floor of this element.");
+		}
+	}
+
+	private static int findFloorOfANum(int[] a, int n, int x) {		
+		if(a[n-1]<=x)
+			return n-1;
+		
+		if(x<a[0])
+			return -1;
+		
+		if(a[0]==x)
+			return 0;
+		
+		for(int i=1;i<n;i++) {
+			if(a[i]==x)
+				return i;
+			if(a[i-1]<x && x<a[i])
+				return i-1;
+		}	
+		return -1;
+	}
+}
