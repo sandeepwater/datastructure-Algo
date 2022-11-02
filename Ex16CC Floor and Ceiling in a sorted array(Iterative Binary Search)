@@ -1,0 +1,64 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Floor and Ceiling in a sorted array(Iterative Binary Search)
+ * 
+ * CEIL: is the smallest number, which is greater or equal to x(given element)
+ * Floor: is the greatest number, which is smaller or equal to x(given number)
+ * 
+ * Assumption: Assume that the array is sorted in non-drecreasing order.
+ * 
+ * Time Complexity: O(logN)
+ * Auxiliary Space: O(1)
+ */
+public class Ex16CC {
+
+	public static void main(String[] args) {
+		int arr[] = { 1, 2, 8, 10, 10, 12, 19 };
+//		int arr[] = {8};
+		int x = 7;
+
+		int index = floorSearch(arr, 0, arr.length - 1, x);
+		if (index == -1)
+			System.out.println("Flooring of " + x + " doesn't exist in array");
+		else
+			System.out.println("Flooring of " + x + " is " + index);
+	}
+
+	private static int floorSearch(int[] a, int low, int high, int x) {
+
+		if (x >= a[high])
+			return high;
+
+		if (x < a[low])
+			return -1;
+
+		if (x == a[0])
+			return 0;
+
+		while (low <= high) {
+			int mid = (low + high) >> 1;
+
+			if (a[mid] == x)
+				return mid;
+
+			if (a[mid] < x) {
+				if (x == a[mid + 1])
+					return mid + 1;
+				if (x < a[mid + 1] && mid + 1 <= high)
+					return mid;
+				else
+					low = mid + 1;
+			} else {
+				if (x == a[mid - 1])
+					return mid - 1;
+				if (a[mid - 1] < x && mid - 1 >= low)
+					return mid - 1;
+				else
+					high = mid - 1;
+			}
+		}
+		return -1;
+	}
+}
