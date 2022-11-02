@@ -1,0 +1,56 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Floor and Ceiling in a sorted array(Recursive Binary Search)
+ * 
+ * CEIL: is the smallest number, which is greater or equal to x(given element)
+ * Floor: is the greatest number, which is smaller or equal to x(given number)
+ * 
+ * Assumption: Assume that the array is sorted in non-drecreasing order.
+ * 
+ *Time Complexity: O(log N), Where N is the number of elements in the input array. 
+ *Auxiliary Space: O(log N), As recursive call is there, hence implicit stack is used.
+ */
+public class Ex16B {
+	
+	public static void main(String[] args) {
+
+		int arr[] = { 1, 2, 8, 10, 10, 12, 19 };
+		int index = -1;
+		int num = 7;
+		index = findCeilOfANumUsingBinarySearch(arr, 0, arr.length-1, num);
+		if (index != -1)
+			System.out.println("Index of Ceil " + num + " is " + index);
+		else {
+			System.out.println("No such element.");
+		}
+	}
+
+	private static int findCeilOfANumUsingBinarySearch(int[] a, int low, int high, int num) {
+		
+		 /** If x is smaller than or equal to first element,then return the first element */
+		if(num<=a[low])
+			return low;
+		
+		if(num > a[high])
+			return -1;
+			
+		int mid =(low+high)>>1;
+			
+			if(a[mid] == num) {
+				return mid;
+			}
+			else if (a[mid]<num){
+				if(mid+1<=high && a[mid+1]>=num)
+					return mid+1;
+				else
+					return findCeilOfANumUsingBinarySearch(a, mid+1, high,num);
+			}else {
+				if(mid-1>=low && a[mid-1]<num)
+					return mid;
+				else
+					return findCeilOfANumUsingBinarySearch(a, low, mid-1,num);
+			}
+	}
+}
