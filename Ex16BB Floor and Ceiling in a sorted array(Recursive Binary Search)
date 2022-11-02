@@ -1,0 +1,63 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Floor and Ceiling in a sorted array(Recursive Binary Search)
+ * 
+ * CEIL: is the smallest number, which is greater or equal to x(given element)
+ * Floor: is the greatest number, which is smaller or equal to x(given number)
+ * 
+ * Assumption: Assume that the array is sorted in non-drecreasing order.
+ * 
+ *Time Complexity: O(log N), Where N is the number of elements in the input array. 
+ *Auxiliary Space: O(log N), As recursive call is there, hence implicit stack is used.
+ */
+public class Ex16BB {
+	
+	public static void main(String[] args) {
+
+//		int arr[] = { 1, 2, 8, 10, 10, 12, 19 };
+		int arr[] = { 1, 2, 7, 9, 10, 11, 10000 };
+		int index = -1;
+		int num = -1;
+		index = searchFloor(arr, 0, arr.length-1, num);
+		if (index != -1)
+			System.out.println("Index of FLOOR " + num + " is: " + index);
+		else {
+			System.out.println("No any FLOOR element.");
+		}
+	}
+
+	private static int searchFloor(int[] a, int low, int high, int x) {
+		
+		if(x>=a[high])
+			return high;
+		
+		if(x<a[0])
+			return -1;
+		
+		if(x==a[0])
+			return 0;
+		
+		int mid = (low+high)>>1;
+		
+		if(a[mid] == x)
+			return mid;
+		
+		if(x>a[mid]) {
+			if(x==a[mid+1])
+				return mid+1;
+			if(x<a[mid+1] && mid+1<high)
+				return mid;
+			else return searchFloor(a, mid+1, high, x);
+		}else {
+			if(x==a[mid-1])
+				return mid-1;
+			if(a[mid-1]<x && mid-1>low)
+				return mid-1;
+			else {
+				return searchFloor(a, low, mid-1, x);
+			}
+		}
+	}
+}
