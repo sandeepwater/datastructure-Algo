@@ -12,8 +12,8 @@ public class Ex18A {
 	public static void main(String[] args) {
 		//Unsorted.
 		//Negative may be.
-		int intArr[] = {3, 2, -1, 4, 7, 6};
-		int result=findMinDiff(intArr, intArr.length, 2, 3);
+		int intArr[] = {3, 2, -1, 4, 2, 6};
+		int result=findMinDiff(intArr, intArr.length, 2, 90);
 		if(result!=-1)
 			System.out.println("The Min Diff: "+result);
 		else System.out.println("Any Number or Both number are unavailable."); 
@@ -30,9 +30,6 @@ public class Ex18A {
 						if (a[j] != a[i] && Math.abs(a[i] - a[j]) < minDiff) {
 							minDiff = Math.abs(a[i] - a[j]);
 							break aa;
-						} else if (a[j] == num1 || a[j] == num2) {
-							if (Math.abs(a[i] - a[j]) < minDiff)
-								minDiff = Math.abs(a[i] - a[j]);
 						}
 					}
 				}
