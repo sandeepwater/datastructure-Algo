@@ -1,0 +1,33 @@
+package array;
+
+import java.util.Arrays;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Find minimum difference between given any two elements(Sorting Technique Method)
+ * 
+ * Time Complexity: O(N*longN)
+ * Auxiliary space: O(1)
+ */
+public class Ex18BB {
+
+	public static void main(String[] args) {
+		int[] intArr = { 3, -1, 7, 57, 90, 45, 40 };
+		System.out.println("The Min Distance: " + findMinDistBwAnyPair(intArr, intArr.length));
+	}
+
+	private static int findMinDistBwAnyPair(int[] a, int n) {
+		Arrays.sort(a);//N*logN
+		
+		int minAbsDiff = Integer.MAX_VALUE;
+
+		for(int i=0; i<n-1;i++) {
+			if(Math.abs(a[i+1]-a[i])<minAbsDiff)
+				minAbsDiff = Math.abs(a[i+1]-a[i]);
+		}
+
+		if(minAbsDiff<Integer.MAX_VALUE)
+			return minAbsDiff;
+		return -1;
+	}
+}
