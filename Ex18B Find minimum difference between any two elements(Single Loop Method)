@@ -1,0 +1,47 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Find minimum difference between any two elements(Single Loop Method)
+ * 
+ * Time Complexity: O(n)
+ * Auxiliary space: O(1)
+ */
+public class Ex18B {
+
+	public static void main(String[] args) {
+		//Unsorted.
+		//Negative may be.
+		int intArr[] = {3, 2, -1, 4, 7, 6};
+		int result=findMinDiff(intArr, intArr.length, 2, 4);
+		if(result!=-1)
+			System.out.println("The Min Absolute Diff: "+result);
+		else System.out.println("Any Number or Both number are unavailable."); 
+	}
+
+	private static int findMinDiff(int[] a, int n, int num1, int num2) {
+		int l = 0;
+		int r = n-1;
+		
+		int minAbsDiff = Integer.MAX_VALUE;
+		
+		while(l<r) {
+			if(a[l] == num1 || a[l] == num2) {
+				if(a[r] == num1 || a[r] == num2) {
+					if(a[l]!=a[r] && Math.abs(a[l]-a[r])<minAbsDiff) {
+						minAbsDiff = Math.abs(a[l]-a[r]);
+					     break;
+					}
+				}else {
+					r--;
+				}
+			}else {
+				l++;
+			}	
+		}
+		
+		if(minAbsDiff!=Integer.MAX_VALUE)
+			return minAbsDiff;
+		else return -1;
+	}
+}
