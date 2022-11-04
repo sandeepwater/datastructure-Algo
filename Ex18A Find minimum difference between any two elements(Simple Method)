@@ -2,7 +2,7 @@ package array;
 
 /**
  * @author Sandeep Srivastava
- * Problem: Find minimum difference between any two elements(Simple Method)
+ * Problem: Find minimum difference between given any two elements(Simple Method)
  * 
  * Time Complexity: O(N^2)
  * Auxiliary Space: O(1)
