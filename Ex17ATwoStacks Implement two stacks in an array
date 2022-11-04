@@ -1,0 +1,100 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Implement two stacks in an array
+ * 
+ * Time Complexity: O(1) + O(1) + O(1) + O(1) = 4*O(1) = O(1) but with Stack Overflow and Stack Underflow
+ */
+public class Ex17ATwoStacks {
+	int arr[];
+	int size;
+	int top1;
+	int top2;
+
+	public Ex17ATwoStacks(int n) {
+		size = n;
+		arr = new int[size]; 
+		top1 = (size/2)+1;
+		top2 = size/2;
+	}
+	
+	void push1(int x) {
+		if (top1 > 0) {
+			top1--;
+			arr[top1] = x;
+		} else {
+			System.out.println("Stack Overflow by element: " + x);
+			return;
+			/**
+			 * In Java, return is a reserved keyword i.e, we can't use it as an identifier.
+			 * It is used to exit from a method, with or without a value.
+			 */
+			/**
+			 * In Java programming, the return statement is used for returning a value when
+			 * the execution of the block is completed. The return statement inside a loop
+			 * will cause the loop to break and further statements will be ignored by the
+			 * compiler.
+			 */
+		}
+	}
+	
+	void push2(int x) {
+		if (top2 < size-1) {
+			top2++;
+			arr[top2] = x;
+		} else {
+			System.out.println("Stack Overflow by element: " + x);
+			return;
+		}
+	}
+	
+	int pop1() {
+		if(top1<=size/2) {
+			int x = arr[top1];
+			top1++;
+			return x;
+		}
+		else {
+			System.out.println("Stack Underflow");
+			System.exit(1);
+			/**
+			 * System. exit function has status code, which tells about the termination,
+			 * such as: exit(0) : Indicates successful termination. exit(1) or exit(-1) or
+			 * any non-zero value – indicates unsuccessful termination.
+			 */
+		}
+		return 0;//return 0 in the main function means that the program executed successfully.
+		//return 0 to tell the is that there was no error or the program ran successfully. 
+	}
+	
+	int pop2() {
+		if(top2>=(size/2)+1) {
+			int x = arr[top2];
+			top2--;
+			return x;
+		}
+		else {
+			System.out.println("Stack Underflow");
+			System.exit(1);
+			/**
+			 * System. exit function has status code, which tells about the termination,
+			 * such as: exit(0) : Indicates successful termination. exit(1) or exit(-1) or
+			 * any non-zero value – indicates unsuccessful termination.
+			 */
+		}
+		return 1;//return 1 in the main function means that the program does not execute successfully and there is some error.
+	}            //Return 1 means that your program had an error. 
+	
+	public static void main(String[] args) {
+		Ex17ATwoStacks twoStacks = new Ex17ATwoStacks(5);
+		twoStacks.push1(3);
+		twoStacks.push2(7);
+		twoStacks.push2(5);
+		twoStacks.push1(2);
+		twoStacks.push1(8);
+		System.out.println("Poped element from the stack1 is: "+twoStacks.pop1());
+		twoStacks.push2(56);
+		System.out.println("Poped element from the stack2 is: "+twoStacks.pop2());
+	}
+}
