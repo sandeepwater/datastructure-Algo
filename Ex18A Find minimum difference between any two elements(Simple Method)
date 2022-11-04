@@ -1,0 +1,44 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Find minimum difference between any two elements(Simple Method)
+ * 
+ * Time Complexity: O(N)
+ * Auxiliary Space: O(1)
+ */
+public class Ex18A {
+	public static void main(String[] args) {
+		//Unsorted.
+		//Negative may be.
+		int intArr[] = {3, 2, -1, 4, 7, 6};
+		int result=findMinDiff(intArr, intArr.length, 2, 3);
+		if(result!=-1)
+			System.out.println("The Min Diff: "+result);
+		else System.out.println("Any Number or Both number are unavailable."); 
+	}
+
+	private static int findMinDiff(int[] a, int n, int num1, int num2) {
+		
+		int minDiff = Integer.MAX_VALUE;
+    
+		aa: for (int i = 0; i < n; i++) {
+			bb: for (int j = i + 1; j < n; j++) {
+				if (a[i] == num1 || a[i] == num2) {
+					if ((a[j] == num1 || a[j] == num2)) {
+						if (a[j] != a[i] && Math.abs(a[i] - a[j]) < minDiff) {
+							minDiff = Math.abs(a[i] - a[j]);
+							break aa;
+						} else if (a[j] == num1 || a[j] == num2) {
+							if (Math.abs(a[i] - a[j]) < minDiff)
+								minDiff = Math.abs(a[i] - a[j]);
+						}
+					}
+				}
+			}
+		}
+		if(minDiff<Integer.MAX_VALUE)
+           return minDiff;
+		return -1;
+	}
+}
