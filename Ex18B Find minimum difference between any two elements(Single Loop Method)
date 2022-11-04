@@ -2,7 +2,7 @@ package array;
 
 /**
  * @author Sandeep Srivastava
- * Problem: Find minimum difference between any two elements(Single Loop Method)
+ * Problem: Find minimum difference between given any two elements(Single Loop Method)
  * 
  * Time Complexity: O(n)
  * Auxiliary space: O(1)
