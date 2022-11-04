@@ -1,0 +1,88 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Implement two stacks in an array
+ * 
+ * Time Complexity: O(1) + O(1) + O(1) + O(1) = 4*O(1) = O(1) No Stack Overflow and Stack Underflow
+ */
+public class Ex17BTwoStacks {
+
+	int arr[];
+	int size;
+	int top1;
+	int top2;
+
+	public Ex17BTwoStacks(int n) {
+		size = n;
+		arr = new int[size];
+
+		//two top elements top1 for first stack and top2 for second stack
+		top1 = -1;
+		top2 = size;
+	}
+
+	// Method to push an element x in stack1
+	void push1(int x) {
+		// There is at least one empty space for ne element
+		if (top1 < top2 - 1) {
+			top1++;
+			arr[top1] = x;
+		} else {
+			System.out.println("Stack Overflow");
+			System.exit(1);
+		}
+	}
+
+	// Method to push an element x in stack2
+	void push2(int x) {
+		// There is at least one empty space for ne element
+		if (top1 < top2 - 1) {
+			top2--;
+			arr[top2] = x;
+		} else {
+			System.out.println("Stack Overflow");
+			System.exit(1);
+		}
+	}
+
+	// Method to pop an element from first stack
+	int pop1() {
+		if (top1 >= 0) {
+			int x = arr[top1];
+			top1--;
+			return x;
+		} else {
+			System.out.println("Stack Overflow.");
+			System.exit(1);
+		}
+		return 0;
+	}
+
+	// Method to pop an element from first stack
+	int pop2() {
+		if (top2 < size) {
+			int x = arr[top2];
+			top2++;
+			return x;
+		} else {
+			System.out.println("Stack Overflow.");
+			System.exit(1);
+		}
+		return 0;
+	}
+
+	public static void main(String[] args) {
+
+		Ex17BTwoStacks twoStacks = new Ex17BTwoStacks(5);
+		twoStacks.push1(5);
+		twoStacks.push2(10);
+		twoStacks.push2(15);
+		twoStacks.push1(12);
+		twoStacks.push2(7);
+		
+		System.out.println("Poped element from the stack1 is: "+twoStacks.pop1());
+		twoStacks.push2(40);
+		System.out.println("Poped element from the stack2 is: "+twoStacks.pop2());
+	}
+}
