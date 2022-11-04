@@ -26,7 +26,7 @@ public class Ex18AA {
 			}
 		}
 		
-		if(minAbsDist != Integer.MAX_VALUE)
+		if(minAbsDist < Integer.MAX_VALUE)
 			return minAbsDist;
 		return -1;
 	}
