@@ -1,0 +1,33 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Find minimum difference between any two elements(Simple Method)
+ * 
+ * Time Complexity: O(n^2)
+ * Auxiliary Space: O(1) 
+ */
+public class Ex18AA {
+	
+	public static void main(String[] args) {
+		int[] intArr = { 3, -1, 7, 57, 90, 45, 40 };
+		System.out.println("The Min Distance: " + findMinDistBwAnyPair(intArr, intArr.length));
+	}
+
+	private static int findMinDistBwAnyPair(int[] a, int n) {
+		int minAbsDist = Integer.MAX_VALUE;
+		
+		for(int i=0;i<n;i++) {
+			
+			for(int j=i+1;j<n;j++) {
+				
+				if(Math.abs(a[i]-a[j])<minAbsDist)
+					minAbsDist = Math.abs(a[i]-a[j]);
+			}
+		}
+		
+		if(minAbsDist != Integer.MAX_VALUE)
+			return minAbsDist;
+		return -1;
+	}
+}
