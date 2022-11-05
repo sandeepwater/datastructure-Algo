@@ -5,6 +5,8 @@ package array;
  * Problem: Find duplicates in O(n) time and O(1) extra space
  * Time Complexity: O(n)
  * Auxiliary Space: O(1)
+ * 
+ * Note: It will not hndle the case when array has 0, becoz negation of 0 not possible
  */
 
 public class Ex19A {
