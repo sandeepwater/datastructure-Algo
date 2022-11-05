@@ -12,13 +12,20 @@ import java.util.Arrays;
 public class Ex21B {
 
 	public static void main(String[] args) {
-//		int arr[] = new int[] {1, 60, -10, 70,-80, 85};
+		int arr[] = new int[] {1, 60, -10, 70,-80, 85};
 //		int arr[] = new int[] {61, 60, -90, 70,-80, 85};
-		int arr[] = new int[] {1, 60, 4, 70,9, 85};
+//		int arr[] = new int[] {1, 60, 4, 70,9, 85};
+//		int arr[] = new int[] {1, 60};
+//		int arr[] = new int[] {1};
 		findTwoEleWhoseSumClosestTwoZero(arr, arr.length);
 	}
 
 	private static void findTwoEleWhoseSumClosestTwoZero(int[] a, int n) {
+		
+		if(n<2) {
+			System.out.println("Invalid Input.");
+		    System.exit(1);
+		}
 		Arrays.sort(a);//N*longN 
 		
 		int l = 0;
