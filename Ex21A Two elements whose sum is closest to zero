@@ -1,0 +1,32 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Two elements whose sum is closest to zero
+ * 
+ * Time Complexity:O(N^2)
+ * Auxiliary Space: O(1)
+ */
+public class Ex21A {
+
+	public static void main(String[] args) {
+		int arr[] = new int[] {1, 60, -10, 70,-80, 85};
+		findTwoEleWhoseSumClosestTwoZero(arr, arr.length);
+	}
+
+	private static void findTwoEleWhoseSumClosestTwoZero(int[] a, int n) {
+		int sum = Integer.MAX_VALUE;
+		int f_Ind = -1;
+		int l_Ind = -1;
+		for(int i=0;i<n;i++) {
+			for(int j=i+1;j<n;j++) {
+				if(Math.abs(a[i]+a[j])<sum) {
+					sum = Math.abs(a[i]+a[j]);
+					f_Ind = i;
+					l_Ind = j;
+				}
+			}
+		}
+		System.out.println("Pair give sum close to zero is: "+ a[f_Ind]+" and "+a[l_Ind]+" at indexes "+f_Ind+" and "+l_Ind+" respectively.");
+	}
+}
