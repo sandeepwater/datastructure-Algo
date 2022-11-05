@@ -1,0 +1,32 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: same previouse problem handles 0 also by incrementing all by 1 the decrementing found duplicates by 1
+ * Time Complexity: O(n)
+ * Auxiliary Space: O(1)
+ */
+
+public class  {
+
+	public static void main(String[] args) {
+		int intArr[] = {1, 0, 2, 3, 1, 3, 6, 6, 0};
+		findAndPrintDuplicatets(intArr, intArr.length);
+	}
+
+	private static void findAndPrintDuplicatets(int[] a, int n) {
+		
+		for(int i=0;i<n;i++) {
+			a[i] = a[i]+1;
+		}
+		
+		for(int i=0;i<n;i++) {
+			if(a[Math.abs(a[i])]>0){
+				a[Math.abs(a[i])] = -a[Math.abs(a[i])];
+			}else {
+				int abs = Math.abs(a[i])-1;//The operator - is undefined for the argument type(s) String, int
+				System.out.println("Duplicates are: "+ abs);
+			}
+		}	
+	}
+}
