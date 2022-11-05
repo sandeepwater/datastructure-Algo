@@ -1,0 +1,43 @@
+package array;
+
+import java.util.ArrayList;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Find lost element from a duplicated array 
+ * 
+ * Time Complexity: O(N)
+ * Auxiliary Space: O(1)
+ */
+public class Ex20A {
+	
+	public static void main(String[] args) {
+		int arr1[] = {4 ,5 , 7, 8, 10};
+		int arr2[] = {4, 5, 7, 8};
+		
+		ArrayList<Object> result = new ArrayList<Object>();
+		
+		result=findLostEleFromDuplicatedArr(arr1, arr2);
+		System.out.println("Lost element from a duplicated array: "+result.get(0) +" From "+ result.get(1)+".");
+	}
+
+	private static ArrayList<Object> findLostEleFromDuplicatedArr(int[] a1, int[] a2) {
+		int sum1 = 0;
+		int sum2 = 0;
+		for (int num : a1)
+			sum1 += num;
+		for (int num : a2)
+			sum2 += num;
+
+		ArrayList<Object> result = new ArrayList<Object>();
+		if (sum1 > sum2) {
+			result.add(sum1 - sum2);
+			result.add("First Array");
+			return result;
+		}else {
+			result.add(sum2 - sum1);
+			result.add("Second Array");
+			return result;
+		}
+	}
+}
