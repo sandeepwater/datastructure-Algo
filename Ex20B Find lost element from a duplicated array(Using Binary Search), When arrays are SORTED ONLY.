@@ -1,0 +1,55 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Find lost element from a duplicated array(Using Binary Search)
+ *          When arrays are SORTED ONLY. 
+ * 
+ * Time Complexity: O(logN)
+ * Auxiliary Space: O(1)
+ */
+public class Ex20B {
+	
+	public static void main(String[] args) {
+//		int arr1[] = {4 ,5 , 7, 8, 10};
+//		int arr2[] = {4, 5, 7, 8}; 
+		int arr1[] = {4 ,5 , 7, 8, 10};
+		int arr2[] = { 5, 7, 8, 10}; 
+		
+		findLostEleFromDuplicatedArr(arr1, arr2,arr1.length, arr2.length);
+	}
+
+	private static void findLostEleFromDuplicatedArr(int[] arr1, int[] arr2, int M, int N) {
+		
+		if(M==N-1)
+			System.out.println("Missing Element From Duplicated Array: "+ binarySearch(arr2, arr1, N)); 
+		else if(N == M-1 )
+			System.out.println("Missing Element From Duplicated Array: "+ binarySearch(arr1, arr2, M));
+		else System.out.println("Invalid Inputs.");
+	}
+
+	private static int binarySearch(int[] a, int[] b, int n) {
+		//when n=1 means in array b 0 element the a[0] will be missing ele itself.
+		if(n==1)
+			return a[0];
+
+		// If Starting element of both the arr not equal then its mean a[0] will be
+		// missing ele, because a have more ele than b
+		if(a[0]!=b[0])
+			return a[0];
+		
+		int l = 0;
+		int r = n-1;
+		
+		while(l<r) {
+			int mid = (l+r)>>1;
+			if(a[mid] == b[mid])
+				l = mid+1;
+			else 
+				r = mid-1;			
+			if(l == r-1)
+				break;
+		}
+		return a[r];
+	}
+}
