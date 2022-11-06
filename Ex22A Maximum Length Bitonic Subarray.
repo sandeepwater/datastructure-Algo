@@ -19,6 +19,9 @@ package array;
  *  3+2-1= 4 max length bitonic array 4, 78, 90, 45
  * 
  *  Expected Time Complexity: O(N)
+ *  
+ *  Time Complexity: O(N)
+ *  Auxiliary Space: O(N)
  */
 public class Ex22A {
 
@@ -58,8 +61,7 @@ public class Ex22A {
 				maxLen = inc[i]+dec[i]-1;
 			    index = i;
 			}
-		}
-		
+		}		
 		System.out.println("Maximum Length Bitonic array is "+maxLen+ " and the peack will be at "+index+".");
 	}
 }
