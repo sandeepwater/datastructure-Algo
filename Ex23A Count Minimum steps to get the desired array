@@ -1,0 +1,69 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Count Minimum steps to get the desired array
+ * Task: task is to count the number of steps to get the desired array not to convert the zero array to desired array.
+ * Idea: Convert the target array toarray of zeros 
+ * 
+ * Initialize result=0;
+ * How To proceed: (a) if all even then divide the array by 2, increse the result by 1
+ *                 (b) if all odd the reduce them by 1, and for every reduction increase the result by 1 
+ *                 
+ * Time ComplexityL: O(N), Due to many time execution of for loops [1 Or 2 Or 3 Or......] * O(N) = O(N)  
+ * Auxiliary Space: O(1)
+ */
+public class Ex23A {
+
+//	static int a[] = new int[] {16, 16, 16};
+//	static int a[] = new int[] {2, 3};
+	static int a[] = new int[] {2, 3, 7};
+	
+	public static void main(String[] args) {
+	     
+		System.out.println("Min number of step to get required arr: "+countMinStepToGetRequiredArr(a.length));
+	}
+
+	private static int countMinStepToGetRequiredArr(int n) {
+
+		//to store number of steps to get desired array
+		int result = 0;
+		
+		while(true) {
+			
+			//to count number of zero in the array, for taking into mind that if zero_count == n then return result
+			int zero_count=0;// zero_count is let's say 1 but when new execution of while loop happen then zero_count will become 0
+			
+			int  i;//to find the first odd
+			
+			for(i=0; i<n ; i++) {
+				if(a[i]%2 == 1)
+					break;
+				else if(a[i]==0)// zero_count is let's say 1 but when new execution of while loop happen then zero_count will become 0
+					zero_count++;
+			}
+			
+			if(zero_count == n)
+				return result;
+			
+			//have to execute it when all element in the array are even
+			if(i==n) {
+				for(int j=0; j<n ;j++) 
+					a[j] = a[j]/2; //actually it is multiply by (1/2) to whole array a[]. As a[j] = a[j] * (a/2).
+				                   //We are axecuting it one time only just to make sure that after one time divide by 2, what
+				                   //the nature if elements in the arr whether even or odd
+					
+				result++;	
+			}
+				
+			//We have to come here when break from any odd number, and preceed from i to the end to 
+			//check the odd numbers and reduce by 1(add of -1) and increment result by 1(actually one add operation)
+			for(int j=i; j<n; j++) {
+				if(a[j]%2==1) {
+					a[j]--;
+					result++;
+				}
+			}
+		}
+	}
+}
