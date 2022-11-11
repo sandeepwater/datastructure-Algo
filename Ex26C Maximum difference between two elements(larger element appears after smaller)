@@ -1,0 +1,43 @@
+package array;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Maximum difference between two elements(larger element appears after smaller)
+ *  
+ *  Points: (1) Maximum difference between any two elements such that LARGER ELEMENT appears after SMALLER ELEMENTS. 
+ * 
+ *  Ex- Array: (1) {2, 3, 10, 6, 4, 8, 1} then returned value should be 8(Difference between 10 and 2)
+ *             (2) {7, 9, 5, 6, 3, 2} then returned value should be 2(Difference between 9 and 7)
+ *           
+ *  Time Complexity: O(N)
+ *  Auxiliary Space: O(N), This is due to creating Auxiliary Array
+ */
+public class Ex26C {
+	
+	public static void main(String[] args) {
+		int arr[] = {2, 3, 10, 6, 4, 8, 1};
+		int maxDiff=findMaxDiffByMaxSumSubArray(arr, arr.length);
+		System.out.println("Max Diff: "+maxDiff);
+	}
+
+	private static int findMaxDiffByMaxSumSubArray(int[] a, int n) {
+
+		int diff[] = new int[n - 1];
+
+		// diff array takes the difference of adjacent element.
+		for (int i = 0; i < n - 1; i++) {
+			diff[i] = a[i + 1] - a[i];
+		}
+
+		int max_diff = diff[0];
+
+		// Now, find the maximum sum sub Array in diff array
+		for (int i = 1; i < n - 1; i++) {
+			if (diff[i - 1] > 0)
+				diff[i] = diff[i] + diff[i - 1];
+			if (max_diff < diff[i])
+				max_diff = diff[i];
+		} 
+		return max_diff;
+	}
+}
