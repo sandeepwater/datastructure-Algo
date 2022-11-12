@@ -1,0 +1,30 @@
+package array;
+
+import java.util.Arrays;
+
+/** 
+ * @author Sandeep Srivastava
+ * Problem: Write a program to reverse an array Or String(Recursive Call)
+ *
+ * Time Complexity = O(log N), Where N is the number of elements in the input array.
+ * Auxiliary Space = O(log N), As recursive call is there, hence implicit stack is used. 
+ */
+public class Ex27B {
+	
+	public static void main(String[] args) {
+		int arr[] = {56, 38, 29, 46, 39, 10, 11, 23};
+	    reverseOfAnArray(arr,0 ,arr.length-1);
+		System.out.println("Reversed Array: "+Arrays.toString(arr));
+	}
+
+	private static void reverseOfAnArray(int[] a,int start, int end) {	
+		int temp;
+		
+		if(start>=end)
+			return;
+		temp = a[start];
+		a[start] = a[end];
+		a[end] = temp;
+		reverseOfAnArray(a, start+1, end-1);
+	}
+}
