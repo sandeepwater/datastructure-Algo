@@ -1,0 +1,36 @@
+package array;
+
+import java.util.Arrays;
+
+/**
+ * @author Sandeep Srivastava
+ * Problem: Write a program to reverse an array Or String(Iterative Way)
+ *
+ * Time Complexity = O(N)
+ * Auxiliary Space = O(1) 
+ */
+public class Ex27A {
+	
+	public static void main(String[] args) {
+		int arr[] = {56, 38, 29, 46, 39, 10, 11, 23};
+		int reversedArray[]= reverseOfAnArray(arr, arr.length);
+		System.out.println("Reversed Array: "+Arrays.toString(reversedArray));
+	}
+
+	private static int[] reverseOfAnArray(int[] a, int n) {
+		//starting index
+		int start = 0;
+		
+		//ending index
+		int end = n-1;
+		
+		while(start<end) {
+			int temp = a[start];
+			a[start] = a[end];
+			a[end] = temp;
+			start++;
+			end--;
+		}	
+		return a;
+	}
+}
