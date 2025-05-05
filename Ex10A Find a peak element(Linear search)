@@ -8,7 +8,7 @@ package array;
  * Ex:(1) 3, 3, 3 Middle 3 element is Not smallar than its neighbour element. so it's a peak element.
  *    (2) {10, 20, 15, 2, 23, 90, 67} then 20 Or 90 is peak element.
  * Corner cases:---> {5, 10, 15, 20} for element 5 only one right element will be to compare i.e. right element,
- *                               for element 20 only one right element will be to compare i.e. left element
+ *                               for element 20 only one left element will be to compare i.e. left element
  *                               
  *              ---> If array is in ascending order then last element will be the Peak element, remaining will not be the peak element
  *              ---> If array is in decending order then first element will be the Peak element, remaining will not be the peak element
