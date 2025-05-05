@@ -46,3 +46,30 @@ public class Ex4A {
 		return min_dist;
 	}
 }
+
+
+
+// updated at 5th May 2025
+import java.util.*;
+import java.util.stream.*;
+class Main {
+	public static void main(String[] args) {
+		int a[] = { 3, 5, 4, 2, 6, 5, 6, 6, 5, 4, 8, 3 };
+		int minDis = minDistanceBetweenTwo(a, 3, 4);
+		System.out.println(minDis);
+	}
+	
+	static int minDistanceBetweenTwo(int[] a, int x, int y){
+	    int n = a.length;
+	    int minDistance = Integer.MAX_VALUE;
+	    for(int i = 0; i < n ; i++){
+	        for(int j = i ; j < n ; j++){
+	            if( (a[i] == x && a[j] == y || a[j]==x && a[i]==y) && minDistance > Math.abs(i-j)){
+	                minDistance = Math.abs(i-j);
+	                break;
+	            }
+	        }
+	    }
+	    return minDistance;
+	}
+}
