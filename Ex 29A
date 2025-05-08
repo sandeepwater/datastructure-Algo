@@ -1,0 +1,39 @@
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        int n = 200;
+        int sum = findIncriptedNum(n);
+        if(sum > -1){
+            System.out.println("Sum: "+ sum);
+        }
+    }
+    
+    public static int findIncriptedNum(int n){
+        int num = 2;
+        int sum = 0;
+        int temp = num;
+        int count = 0;
+        if(n == 1) return num;
+        while(count < n){
+            if(isPelindrome(temp)){
+               sum += temp;
+               System.out.println(temp+" ");
+               count++;
+            }
+            temp = temp+1;
+        }
+        if(sum != -1){
+            return sum;
+        } else{
+            return -1;
+        }
+    }
+    
+    static boolean isPelindrome(int n){
+        if(n == 2 || n == 3 || n == 5 || n==7) return true;
+        if(n % 2 == 0 || n % 3 == 0 || n % 5 == 0 || n%7==0){
+            return false;
+        }
+        return true;
+    }
+}
