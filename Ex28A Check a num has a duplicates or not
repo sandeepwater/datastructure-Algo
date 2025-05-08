@@ -1,0 +1,23 @@
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        int num = 12355;
+        boolean b = doesHaveDuplicates(num);
+        if(b){
+              System.out.println("Duplicates");
+        } else {
+              System.out.println("No Duplicates");
+        }
+    }
+    
+    static boolean doesHaveDuplicates(int num){
+        String str = String.valueOf(num);
+        Set<Character> set = new HashSet<>();
+        for(char c : str.toCharArray()){
+            if(!set.add(c)){
+                return true;
+            }
+        }
+        return false;
+    }
+}
