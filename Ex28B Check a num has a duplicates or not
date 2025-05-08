@@ -1,0 +1,25 @@
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        int num = 12355;
+        boolean b = doesHaveDuplicates(num);
+        if(b){
+              System.out.println("Duplicates");
+        } else {
+              System.out.println("No Duplicates");
+        }
+    }
+    
+    static boolean doesHaveDuplicates(int num){
+         int[] digitsCount = new int[num];
+         while(num > 0){
+             int modulus = num % 10;
+             digitsCount[modulus]++; 
+             if(digitsCount[modulus] > 1){
+                 return true;
+             }
+             num = num / 10;
+         }
+         return false;
+    }
+}
