@@ -1,0 +1,30 @@
+Time Complexity: O(n log n)
+
+Space Complexity: O(1) (if you use in-place sort)
+
+import java.util.Arrays;
+
+public class Ex19C {
+    public static void main(String[] args) {
+        int[] intArr = {0, -1, 2, 3, 0, 3, 5, -1};
+        findAndPrintDuplicates(intArr);
+    }
+
+    private static void findAndPrintDuplicates(int[] a) {
+        Arrays.sort(a); // modifies the array
+        boolean found = false;
+
+        for (int i = 1; i < a.length; i++) {
+            if (a[i] == a[i - 1]) {
+                System.out.println("Duplicate: " + a[i]);
+                found = true;
+                // Skip next duplicates of the same value
+                while (i + 1 < a.length && a[i] == a[i + 1]) i++;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No duplicates found.");
+        }
+    }
+}
