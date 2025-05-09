@@ -1,0 +1,30 @@
+Time Complexity: O(n)
+
+Space Complexity: O(n) — extra space used for storing seen elements.
+
+
+import java.util.HashSet;
+
+public class Ex19B {
+    public static void main(String[] args) {
+        int[] intArr = {0, -1, 2, 3, 0, 3, 5, -1};
+        findAndPrintDuplicates(intArr);
+    }
+
+    private static void findAndPrintDuplicates(int[] a) {
+        HashSet<Integer> seen = new HashSet<>();
+        HashSet<Integer> duplicates = new HashSet<>();
+
+        for (int num : a) {
+            if (!seen.add(num)) {
+                duplicates.add(num);
+            }
+        }
+
+        if (duplicates.isEmpty()) {
+            System.out.println("No duplicates found.");
+        } else {
+            System.out.println("Duplicates are: " + duplicates);
+        }
+    }
+}
